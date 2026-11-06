@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>التقديم على الوظائف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080d18; --bg2:#0d1526; --card:#111b30; --line:#1f2c47;
+    --text:#e8edf7; --muted:#8e9bb5; --accent:#3b82f6; --accent2:#60a5fa;
+    --gold:#d4af37; --ok:#22c55e; --err:#ef4444; --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;
+    background-image:radial-gradient(ellipse at 80% -10%,rgba(59,130,246,.18),transparent 55%),
+    radial-gradient(ellipse at 0% 100%,rgba(212,175,55,.07),transparent 50%);min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(8,13,24,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800;
+    background:linear-gradient(135deg,var(--accent),#1e40af);font-size:14px;letter-spacing:1px}
+  .brand b{display:block;font-size:15px;letter-spacing:1px}
+  .brand small{display:block;color:var(--muted);font-size:12px;margin-top:-4px}
+  .links{display:flex;gap:4px}
+  .links a{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:14px;transition:.2s}
+  .links a:hover{color:var(--text);background:var(--card)}
+  @media(max-width:640px){.links a{padding:6px 8px;font-size:13px}.brand small{display:none}}
+
+  /* hero */
+  .hero{padding:90px 0 60px;text-align:center}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--accent2);
+    border:1px solid var(--line);padding:4px 14px;border-radius:99px;margin-bottom:18px}
+  h1{font-size:clamp(34px,7vw,58px);font-weight:800;line-height:1.2;margin-bottom:14px}
+  .hero p{color:var(--muted);max-width:560px;margin:0 auto 30px;font-size:17px}
+  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:10px;font-weight:700;
+    font-family:inherit;font-size:15px;border:1px solid transparent;cursor:pointer;transition:.2s}
+  .btn-p{background:var(--accent);color:#fff}
+  .btn-p:hover{background:#2563eb;transform:translateY(-2px)}
+  .btn-g{border-color:var(--line);color:var(--text);background:transparent}
+  .btn-g:hover{border-color:var(--accent);background:var(--card)}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:80px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:.25s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .card .n{font-size:12px;color:var(--accent2);letter-spacing:2px}
+  .card h3{font-size:20px;margin:6px 0 8px}
+  .card p{color:var(--muted);font-size:14px}
+  .card .go{display:block;margin-top:14px;color:var(--accent2);font-size:14px;font-weight:700}
+
+  section{padding:30px 0 80px}
+  .sec-head{text-align:center;margin-bottom:34px}
+  .sec-head h2{font-size:32px;font-weight:800}
+  .sec-head p{color:var(--muted)}
+
+  /* laws */
+  .laws{display:grid;gap:12px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  summary{cursor:pointer;padding:18px 22px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';color:var(--accent2);font-size:22px;transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details ol{padding:0 44px 20px 22px;color:var(--muted)}
+  details li{margin:6px 0}
+
+  /* form */
+  .form-card{max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px}
+  @media(max-width:640px){.form-card{padding:22px 18px}}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:600px){.row{grid-template-columns:1fr}}
+  .f{margin-bottom:18px}
+  label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}
+  label .req{color:var(--err)}
+  .hint{font-size:12px;color:var(--muted);margin-top:4px}
+  input,select,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;color:var(--text);font-family:inherit;font-size:15px;transition:.2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.2)}
+  textarea{min-height:110px;resize:vertical}
+  input.bad,select.bad,textarea.bad{border-color:var(--err)}
+  .radios{display:flex;gap:10px;flex-wrap:wrap}
+  .radios label{flex:1;min-width:120px;display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:11px 14px;cursor:pointer;font-weight:500;margin:0}
+  .radios input{width:auto;accent-color:var(--accent)}
+  .radios label:has(input:checked){border-color:var(--accent);background:rgba(59,130,246,.1)}
+  .agree{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:14px;color:var(--muted);cursor:pointer}
+  .agree input{width:auto;margin-top:5px;accent-color:var(--accent)}
+  .submit{width:100%;justify-content:center;margin-top:10px;padding:14px}
+  .submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+  .msg{margin-top:16px;padding:14px;border-radius:10px;font-size:14px;display:none}
+  .msg.ok{display:block;background:rgba(34,197,94,.12);border:1px solid var(--ok);color:#86efac}
+  .msg.err{display:block;background:rgba(239,68,68,.12);border:1px solid var(--err);color:#fca5a5}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <div class="logo" id="logoText">RP</div>
+      <div><b id="brandName">SERVER</b><small id="brandSub">بوابة التوظيف</small></div>
+    </a>
+    <div class="links">
+      <a href="#top">الرئيسية</a>
+      <a href="#laws">القوانين</a>
+      <a href="#apply">التقديم</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <span class="eyebrow" id="heroEyebrow">ROLEPLAY SERVER</span>
+  <h1 id="heroTitle">بوابة التوظيف</h1>
+  <p id="heroText">الانضباط والمسؤولية أساس العمل. اطّلع على القوانين ثم قدّم طلبك عبر النموذج الرسمي، وسيصل مباشرة لفريق المراجعة.</p>
+  <div class="btns">
+    <a href="#apply" class="btn btn-p">تقديم طلب ←</a>
+    <a href="#laws" class="btn btn-g">عرض القوانين</a>
+  </div>
+</header>
+
+<div class="wrap grid">
+  <a href="#laws" class="card"><span class="n">01 / LAWS</span><h3>القوانين</h3><p>الانضباط، التسلسل القيادي، استخدام الصلاحيات، والتعامل مع المدنيين.</p><span class="go">عرض القوانين ←</span></a>
+  <a href="#apply" class="card"><span class="n">02 / APPLY</span><h3>نموذج التقديم</h3><p>قدّم بياناتك ومعلومات شخصيتك داخل المدينة لإرسال الطلب للمراجعة.</p><span class="go">بدء التقديم ←</span></a>
+  <div class="card"><span class="n">03 / REVIEW</span><h3>المراجعة</h3><p>يُراجع الطلب من الإدارة ويتم التواصل معك عبر الديسكورد عند القبول.</p></div>
+</div>
+
+<section id="laws" class="wrap">
+  <div class="sec-head"><h2>القوانين</h2><p>يجب حفظ القوانين قبل التقديم</p></div>
+  <div class="laws">
+    <details open>
+      <summary>الانضباط العام</summary>
+      <ol>
+        <li>احترام جميع الرتب والالتزام بالتسلسل القيادي.</li>
+        <li>الالتزام بالزي الرسمي أثناء الخدمة.</li>
+        <li>يُمنع استخدام الصلاحيات لأغراض شخصية.</li>
+        <li>يُمنع الخروج من الخدمة دون إذن من المسؤول.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>التعامل مع المدنيين</summary>
+      <ol>
+        <li>التعامل باحترام مع جميع المواطنين.</li>
+        <li>عدم استخدام القوة إلا عند الضرورة.</li>
+        <li>توضيح سبب الإيقاف أو القبض للمواطن.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>العقوبات</summary>
+      <ol>
+        <li>المخالفة الأولى: إنذار.</li>
+        <li>المخالفة الثانية: تنزيل رتبة.</li>
+        <li>المخالفة الثالثة: فصل من الوظيفة.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<section id="apply" class="wrap">
+  <div class="sec-head"><h2>طلب انضمام</h2><p>أكمل البيانات بدقة، سيتم إرسال طلبك مباشرة لقناة التقديمات</p></div>
+
+  <form class="form-card" id="form" novalidate>
+    <div class="f">
+      <label>الوظيفة المطلوبة <span class="req">*</span></label>
+      <select name="job" id="jobSelect" required></select>
+    </div>
+
+    <div class="row">
+      <div class="f">
+        <label>اسم الشخصية داخل المدينة <span class="req">*</span></label>
+        <input name="charName" required maxlength="60">
+      </div>
+      <div class="f">
+        <label>رقم الهوية داخل المدينة <span class="req">*</span></label>
+        <input name="cityId" required maxlength="20">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="f">
+        <label>العمر <span class="req">*</span></label>
+        <input name="age" type="number" min="10" max="80" required>
+      </div>
+      <div class="f">
+        <label>Discord ID <span class="req">*</span></label>
+        <input name="discordId" required inputmode="numeric" dir="ltr" placeholder="123456789012345678">
+        <div class="hint">رقم من 17 إلى 20 خانة (فعّل وضع المطوّر ← كليك يمين على اسمك ← Copy User ID)</div>
+      </div>
+    </div>
+
+    <div class="f">
+      <label>هل حافظ القوانين؟ <span class="req">*</span></label>
+      <div class="radios">
+        <label><input type="radio" name="knowsLaws" value="نعم" required> نعم</label>
+        <label><input type="radio" name="knowsLaws" value="لا"> لا</label>
+      </div>
+    </div>
+
+    <div class="f">
+      <label>الخبرات السابقة <span class="req">*</span></label>
+      <textarea name="experience" required maxlength="900"></textarea>
+    </div>
+
+    <div class="f">
+      <label>سبب التقديم <span class="req">*</span></label>
+      <textarea name="reason" required maxlength="900"></textarea>
+    </div>
+
+    <div class="f">
+      <label class="agree"><input type="checkbox" name="agree" required> أقر بأن البيانات المدخلة صحيحة وأوافق على مراجعة الطلب.</label>
+    </div>
+
+    <button class="btn btn-p submit" id="submitBtn" type="submit">إرسال الطلب</button>
+    <div class="msg" id="msg"></div>
+  </form>
+</section>
+
+<footer><span id="footerText">جميع الحقوق محفوظة</span></footer>
+
+<script>
+/* ================== الإعدادات — عدّل هنا فقط ================== */
+const CONFIG = {
+  WEBHOOK_URL: "https://discord.com/api/webhooks/1568118804553146389/4l6Jn4iMXnBydYfj6TImpGXKyfxHHjuRbSuftVMMrlJNsuYHEEDazfcOiqr6uA6V2mNW",   // Server Settings ← Integrations ← Webhooks ← Copy URL
+  SERVER_NAME: "OLD SCHOOL",
+  LOGO_TEXT:   "OS",
+  SUBTITLE:    "وزارة الداخلية",
+  HERO_TITLE:  "وزارة الداخلية",
+  JOBS: ["الشرطة", "الإسعاف", "الدفاع المدني", "الميكانيكي"],
+  MENTION:     "",          // مثال: "<@&ROLE_ID>" لمنشن رتبة المراجعين، أو اتركه فارغ
+  EMBED_COLOR: 0x3b82f6,
+  COOLDOWN_MIN: 10          // دقائق بين كل تقديم والثاني من نفس الجهاز
+};
+/* ============================================================== */
+
+document.title = `التقديم | ${CONFIG.SERVER_NAME}`;
+brandName.textContent = CONFIG.SERVER_NAME;
+logoText.textContent = CONFIG.LOGO_TEXT;
+brandSub.textContent = CONFIG.SUBTITLE;
+heroTitle.textContent = CONFIG.HERO_TITLE;
+heroEyebrow.textContent = `${CONFIG.SERVER_NAME} ROLEPLAY`;
+footerText.textContent = `${CONFIG.SERVER_NAME} · ${CONFIG.SUBTITLE}`;
+jobSelect.innerHTML = '<option value="">— اختر الوظيفة —</option>' +
+  CONFIG.JOBS.map(j => `<option>${j}</option>`).join('');
+
+const form = document.getElementById('form');
+const btn = document.getElementById('submitBtn');
+const msg = document.getElementById('msg');
+
+function show(type, text){ msg.className = 'msg ' + type; msg.textContent = text; }
+function getLast(){ try { return +localStorage.getItem('lastApply') || 0; } catch { return 0; } }
+function setLast(){ try { localStorage.setItem('lastApply', Date.now()); } catch {} }
+// يمنع منشن @everyone وروابط الديسكورد داخل النصوص
+const clean = s => String(s).replace(/@(everyone|here)/gi, '@\u200b$1').replace(/<@[!&]?\d+>/g, '').trim();
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  form.querySelectorAll('.bad').forEach(el => el.classList.remove('bad'));
+
+  let ok = true;
+  form.querySelectorAll('[required]').forEach(el => {
+    if (el.type === 'radio') return;
+    if (el.type === 'checkbox' ? !el.checked : !el.value.trim()) { el.classList.add('bad'); ok = false; }
+  });
+  const d = Object.fromEntries(new FormData(form));
+  if (!d.knowsLaws) ok = false;
+  if (!ok) return show('err', 'الرجاء تعبئة جميع الحقول المطلوبة.');
+
+  if (!/^\d{17,20}$/.test(d.discordId.trim())) {
+    form.discordId.classList.add('bad');
+    return show('err', 'Discord ID غير صحيح — لازم يكون أرقام فقط (17–20 خانة).');
+  }
+
+  const wait = CONFIG.COOLDOWN_MIN * 60000 - (Date.now() - getLast());
+  if (wait > 0) return show('err', `أرسلت طلباً مؤخراً، حاول بعد ${Math.ceil(wait/60000)} دقيقة.`);
+
+  if (!CONFIG.WEBHOOK_URL.startsWith('https://')) return show('err', 'لم يتم ضبط رابط الويب هوك بعد.');
+
+  btn.disabled = true; btn.textContent = 'جاري الإرسال...';
+
+  const id = d.discordId.trim();
+  const payload = {
+    username: `${CONFIG.SERVER_NAME} | التقديمات`,
+    content: CONFIG.MENTION || undefined,
+    allowed_mentions: { parse: [], roles: (CONFIG.MENTION.match(/\d{17,20}/) || []) },
+    embeds: [{
+      title: `📋 طلب تقديم جديد — ${clean(d.job)}`,
+      color: CONFIG.EMBED_COLOR,
+      fields: [
+        { name: '👤 اسم الشخصية', value: clean(d.charName), inline: true },
+        { name: '🪪 رقم الهوية', value: clean(d.cityId), inline: true },
+        { name: '🎂 العمر', value: clean(d.age), inline: true },
+        { name: '💬 الديسكورد', value: `<@${id}> (\`${id}\`)`, inline: true },
+        { name: '📜 حافظ القوانين؟', value: d.knowsLaws, inline: true },
+        { name: '💼 الوظيفة', value: clean(d.job), inline: true },
+        { name: '🧰 الخبرات السابقة', value: clean(d.experience).slice(0, 1000) },
+        { name: '❓ سبب التقديم', value: clean(d.reason).slice(0, 1000) }
+      ],
+      footer: { text: CONFIG.SERVER_NAME },
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  try {
+    const res = await fetch(CONFIG.WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(res.status);
+    setLast();
+    form.reset();
+    show('ok', '✅ تم إرسال طلبك بنجاح! سيتم التواصل معك عبر الديسكورد.');
+  } catch (err) {
+    show('err', 'تعذّر إرسال الطلب، حاول مرة أخرى لاحقاً.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'إرسال الطلب';
+  }
+});
+</script>
+</body>
+</html>
